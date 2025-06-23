@@ -1,0 +1,60 @@
+services:
+  spark-master:
+    image: apache/spark:4.0.0-scala2.13-java21-python3-ubuntu
+    container_name: spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master --host spark-master
+    ports:
+      - "8080:8080"   # UI do master
+      - "7077:7077"   # Comunicação entre master e workers
+    volumes:
+      - ./dados:/dados
+    environment:
+      - SPARK_MODE=master
+
+  spark-worker-1:
+    image: apache/spark:4.0.0-scala2.13-java21-python3-ubuntu
+    container_name: spark-worker-1
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    volumes:
+      - ./dados:/dados
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+
+  spark-worker-2:
+    image: apache/spark:4.0.0-scala2.13-java21-python3-ubuntu
+    container_name: spark-worker-2
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    volumes:
+      - ./dados:/dados
+    depends_on:
+      - spark-master
+    ports:
+      - "8082:8082"
+
+  spark-worker-3:
+    image: apache/spark:4.0.0-scala2.13-java21-python3-ubuntu
+    container_name: spark-worker-3
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    volumes:
+      - ./dados:/dados
+    depends_on:
+      - spark-master
+    ports:
+      - "8083:8083"
+
+  spark-client:
+    image: apache/spark:4.0.0-scala2.13-java21-python3-ubuntu
+    container_name: spark-client
+    depends_on:
+      - spark-master
+      - spark-worker-1
+      - spark-worker-2
+      - spark-worker-3
+    volumes:
+      - ./app:/app
+      - ./dados:/dados
+    stdin_open: true
+    tty: true
+    command: bash

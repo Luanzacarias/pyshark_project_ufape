@@ -14,6 +14,7 @@ Este projeto demonstra como executar um cluster Apache Spark com Docker e Docker
 ```
 .
 ├── app/            # Scripts em PySpark
+│   └── script-netflix.py
 │   └── script.py
 ├── dados/          # Dataset CSV
 │   └── netflix_titles.csv

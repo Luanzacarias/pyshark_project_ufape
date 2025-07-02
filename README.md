@@ -16,7 +16,8 @@ Este projeto demonstra como executar um cluster Apache Spark com Docker e Docker
 ├── app/            # Scripts em PySpark
 │   └── script.py
 ├── dados/          # Dataset CSV
-│   └── exemplo.csv
+│   └── netflix_titles.csv
+│   └── yellow_tripdata_2015.csv
 ├── docker-compose.yml
 └── README.md
 ```
@@ -30,13 +31,15 @@ git clone git@github.com:Luanzacarias/pyshark_project_ufape.git
 cd pyshark_project_ufape
 ```
 
-### 2️⃣ Adicione seu Dataset
+### 2️⃣ Adicione o Dataset
 
-Coloque seu arquivo CSV dentro da pasta `/dados`. Exemplo:
+Utilizamos o arquivo "yellow_tripdata_2015-01.csv" disponível no Kaggle [aqui](https://www.kaggle.com/datasets/elemento/nyc-yellow-taxi-trip-data), contém dados das viagens feitas por táxis em New York no ano de 2015 no mês de Janeiro. Além dele, ainda usamos um base de dados dos títulos dos filmes e séries da Netflix também no Kaggle, disponível [aqui](https://www.kaggle.com/datasets/shivamb/netflix-shows?resource=download)
 
 ```
-dados/exemplo.csv
+dados/netflix_titles.csv ~ 3,15MB
+dados/yellow_tripdata_2015-01.csv ~ 2GB
 ```
+
 
 ### 3️⃣ Suba os Containers
 

@@ -99,5 +99,4 @@ df2.groupBy("pickup_hour") \
 
 spark.stop()
 
-# Fecha o arquivo de log
 log_file.close()

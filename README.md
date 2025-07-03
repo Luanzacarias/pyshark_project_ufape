@@ -21,6 +21,7 @@ Este projeto demonstra como executar um cluster Apache Spark com Docker e Docker
 │   └── yellow_tripdata_2015.csv
 ├── docker-compose.yml
 └── README.md
+└── run_spark.sh
 ```
 
 ## ▶️ Passos para Executar
@@ -48,19 +49,13 @@ dados/yellow_tripdata_2015-01.csv ~ 2GB
 docker-compose up -d
 ```
 
-### 4️⃣ Acesse o Container Cliente
+### 4️⃣ Rode o script shell
 
 ```bash
-docker exec -it <container-id:spark-client> bash
+./run_spark.sh
 ```
 
-### 5️⃣ Execute seu Script PySpark
-
-```bash
-/opt/spark/bin/spark-submit /app/script.py
-```
-
-O resultado será exibido diretamente no terminal.
+O resultado será exibido diretamente no terminal e salvo em um arquivo `metricas.txt`.
 
 ---
 
